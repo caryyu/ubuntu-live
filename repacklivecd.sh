@@ -6,9 +6,7 @@ cp /etc/resolv.conf chroot/etc/resolv.conf && \
 cp /etc/apt/sources.list chroot/etc/apt/sources.list
 
 cat << EOF | chroot chroot /bin/sh
-mount none -t proc /proc
-mount none -t sysfs /sys
-mount none -t devpts /dev/pts
+mount none -t proc /proc && mount none -t sysfs /sys && mount none -t devpts /dev/pts
 export HOME=/root
 export LC_ALL=C
 apt-get update
@@ -19,6 +17,7 @@ dpkg-divert --local --rename --add /sbin/initctl
 
 apt-get install --yes ubuntu-standard casper lupin-casper
 apt-get install --yes discover laptop-detect os-prober
+apt-get install --yes linux-generic
 apt-get install --no-install-recommends network-manager
 
 rm /var/lib/dbus/machine-id
@@ -27,9 +26,7 @@ dpkg-divert --rename --remove /sbin/initctl
 apt-get clean
 rm -rf /tmp/*
 rm /etc/resolv.conf
-umount -lf /proc
-umount -lf /sys
-umount -lf /dev/pts
+umount -lf /proc && umount -lf /sys && umount -lf /dev/pts
 exit
 EOF
 
