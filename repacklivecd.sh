@@ -18,7 +18,7 @@ dbus-uuidgen > /var/lib/dbus/machine-id
 dpkg-divert --local --rename --add /sbin/initctl
 
 apt-get install --yes ubuntu-standard casper lupin-casper
-apt-get install --yes laptop-detect os-prober
+apt-get install --yes discover laptop-detect os-prober
 apt-get install --no-install-recommends network-manager
 
 rm /var/lib/dbus/machine-id

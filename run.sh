@@ -1,3 +1,3 @@
 #!/bin/bash
 
-apt-get update -f && apt-get install ssh 
+apt-get update && apt-get -y install ssh && initctl start ssh
