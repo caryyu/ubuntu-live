@@ -35,6 +35,8 @@ EOF
 
 umount chroot/dev
 
+apt-get install --yes syslinux squashfs-tools genisoimage
+
 mksquashfs chroot image/casper/filesystem.squashfs && \
 printf $(sudo du -sx --block-size=1 chroot | cut -f1) > image/casper/filesystem.size
 
